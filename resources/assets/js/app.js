@@ -17,14 +17,32 @@ $('#addOrderPosition').click(function() {
     let template = $('.orderRow:first');
     let container = $('#orderPositions');
 
+    template.find('[data-select2-ajax]').select2('destroy');
+
+    let templateNo = template.data('rowId');
     let clone = template.clone();
+
     clone.attr('data-row-id', nextOrderPositionNumber);
-    clone.find('input').each(function() {
-        $(this).attr('name', $(this).attr('name').replace('[0]', '[' + nextOrderPositionNumber + ']'))
-               .val('');
+
+    clone.find('input,select').each(function() {
+        if (undefined !== $(this).attr('name')) {
+            $(this).attr('name', $(this).attr('name').replace('[' + templateNo + ']', '[' + nextOrderPositionNumber + ']'))
+                .val('');
+        }
+
+        if (undefined !== $(this).attr('id')) {
+            $(this).attr('id', $(this).attr('id').replace('-' + templateNo, '-' + nextOrderPositionNumber));
+        }
+
+        if (undefined !== $(this).attr('data-select2-id')) {
+            $(this).attr('data-select2-id', $(this).attr('data-select2-id').replace('-' + templateNo, '-' + nextOrderPositionNumber));
+        }
     });
 
     container.append(clone);
+
+    createSelect2(clone.find('[data-select2-ajax]'));
+    createSelect2(template.find('[data-select2-ajax]'));
 
     nextOrderPositionNumber++;
     $('.removeOrderPosition').css('visibility', 'visible');
@@ -38,8 +56,8 @@ $(document).on('click', '.removeOrderPosition', function() {
     $(this).closest('.orderRow').remove();
 });
 
-$(document).ready(function() {
-    $('[data-select2-ajax]').select2({
+function createSelect2(obj) {
+    obj.select2({
         ajax: {
             url: function (){
                 return $(this).data('select2Ajax');
@@ -54,5 +72,11 @@ $(document).ready(function() {
             },
         },
         tags: $(this).data('select2Tags') === 'true'
+    });
+}
+
+$(document).ready(function() {
+    $('[data-select2-ajax]').each(function (index, el) {
+        createSelect2($(el));
     });
 });

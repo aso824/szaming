@@ -27,7 +27,7 @@
                                 </div>
                             </div>
 
-                            <span class="h3">Positions:</span>
+                            <span class="h3">{{ __('Positions') }}:</span>
                             <hr>
 
                             <div id="orderPositions">
@@ -64,11 +64,12 @@
                                     </div>
 
                                     <div class="col-lg-3">
-                                        {!! Form::text('orders[0][people]', '', [
+                                        {!! Form::select('orders[0][people][]', [], null, [
+                                            'multiple' => 'multiple',
                                             'class' => 'form-control',
-                                            'autocomplete' => 'off',
                                             'required',
-                                            'placeholder' => __('People'),
+                                            'data-select2-ajax' => route('ajax.users.index'),
+                                            'id' => 'people-0',
                                         ]) !!}
                                     </div>
 
