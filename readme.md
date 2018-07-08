@@ -12,7 +12,7 @@ Like any other Laravel based project:
     nano .env               # Set database fields
     php artisan migrate
     
-If you aren't familar with Apache/Nging, just use built-in server:
+If you aren't familiar with Apache/Nginx, just use built-in server:
 
     php artisan serve
 
@@ -22,4 +22,4 @@ Feel free to send pull request, you'll never be ignored.
 
 ## License
 
-The szaming app is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+The Szaming app is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
