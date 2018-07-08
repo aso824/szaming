@@ -79,16 +79,9 @@ return [
         ],
 
         'testing' => [
-            'driver'    => 'mysql',
-            'host'      => env('DB_TESTING_HOST', '127.0.0.1'),
-            'port'      => env('DB_TESTING_PORT', '3306'),
-            'database'  => env('DB_TESTING_DATABASE', 'testing'),
-            'username'  => env('DB_TESTING_USERNAME', 'root'),
-            'password'  => env('DB_TESTING_PASSWORD', ''),
-            'charset'   => 'utf8mb4',
-            'collation' => 'utf8mb4_unicode_ci',
-            'prefix'    => '',
-            'strict'    => true,
+            'driver'   => 'sqlite',
+            'database' => ':memory:',
+            'prefix'   => '',
         ],
 
     ],

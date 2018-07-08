@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use App\Exceptions\Shopping\InvalidPriceException;
+use App\Exceptions\Shopping\InvalidQuantityException;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
@@ -43,9 +45,20 @@ class ShoppingPosition extends Model
      * Get total price for this position.
      *
      * @return float
+     *
+     * @throws \App\Exceptions\Shopping\InvalidPriceException
+     * @throws \App\Exceptions\Shopping\InvalidQuantityException
      */
     public function getSum(): float
     {
+        if ($this->price <= 0) {
+            throw new InvalidPriceException('Price must be positive.');
+        }
+
+        if ($this->quantity <= 0) {
+            throw new InvalidQuantityException('Quantity must be positive.');
+        }
+
         return $this->price * $this->quantity;
     }
 }
