@@ -14,7 +14,7 @@
  Order food together, never forget about payments.
 </p>
 
-## Installation?style=flat-square
+## Installation
 
 Like any other Laravel based project:
 
