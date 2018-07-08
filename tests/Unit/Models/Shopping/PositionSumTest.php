@@ -15,7 +15,7 @@ class PositionSumTest extends TestCase
     public function testCorrectSum()
     {
         $position = factory(ShoppingPosition::class)->make([
-            'price' => 9.99,
+            'price'    => 9.99,
             'quantity' => 3,
         ]);
 
@@ -25,7 +25,7 @@ class PositionSumTest extends TestCase
     public function testInvalidData()
     {
         $position = factory(ShoppingPosition::class)->make([
-            'price' => -9.99,
+            'price'    => -9.99,
             'quantity' => 3,
         ]);
 
@@ -33,7 +33,7 @@ class PositionSumTest extends TestCase
         $position->getSum();
 
         $position = factory(ShoppingPosition::class)->make([
-            'price' => 9.99,
+            'price'    => 9.99,
             'quantity' => -3,
         ]);
 

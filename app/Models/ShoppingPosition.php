@@ -44,10 +44,10 @@ class ShoppingPosition extends Model
     /**
      * Get total price for this position.
      *
-     * @return float
-     *
      * @throws \App\Exceptions\Shopping\InvalidPriceException
      * @throws \App\Exceptions\Shopping\InvalidQuantityException
+     *
+     * @return float
      */
     public function getSum(): float
     {
