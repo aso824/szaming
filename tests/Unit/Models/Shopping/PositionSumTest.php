@@ -22,7 +22,7 @@ class PositionSumTest extends TestCase
         $this->assertEquals(29.97, $position->getSum());
     }
 
-    public function testInvalidData()
+    public function testInvalidPrice()
     {
         $position = factory(ShoppingPosition::class)->make([
             'price'    => -9.99,
@@ -32,6 +32,10 @@ class PositionSumTest extends TestCase
         $this->expectException(InvalidPriceException::class);
         $position->getSum();
 
+    }
+
+    public function testInvalidQuantity()
+    {
         $position = factory(ShoppingPosition::class)->make([
             'price'    => 9.99,
             'quantity' => -3,

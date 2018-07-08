@@ -29,17 +29,23 @@ class Handler extends ExceptionHandler
     /**
      * Report or log an exception.
      *
+     * @codeCoverageIgnore
+     *
      * @param \Exception $exception
+     *
+     * @throws \Exception
      *
      * @return void
      */
-    public function report(Exception $exception)
+    public function report(Exception $exception): void
     {
         parent::report($exception);
     }
 
     /**
      * Render an exception into an HTTP response.
+     *
+     * @codeCoverageIgnore
      *
      * @param \Illuminate\Http\Request $request
      * @param \Exception               $exception
