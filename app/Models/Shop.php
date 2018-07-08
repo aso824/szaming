@@ -7,15 +7,17 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
- * App\Models\Shop
+ * App\Models\Shop.
  *
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Shopping[] $shoppings
+ *
  * @method static bool|null forceDelete()
  * @method static \Illuminate\Database\Query\Builder|\App\Models\Shop onlyTrashed()
  * @method static bool|null restore()
  * @method static \Illuminate\Database\Query\Builder|\App\Models\Shop withTrashed()
  * @method static \Illuminate\Database\Query\Builder|\App\Models\Shop withoutTrashed()
  * @mixin \Eloquent
+ *
  * @property int $id
  * @property string $name
  * @property string $address
@@ -23,6 +25,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property \Carbon\Carbon|null $created_at
  * @property \Carbon\Carbon|null $updated_at
  * @property \Carbon\Carbon|null $deleted_at
+ *
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Shop whereAddress($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Shop whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Shop whereDeletedAt($value)
@@ -41,7 +44,7 @@ class Shop extends Model
      * @var array
      */
     protected $dates = [
-        'deleted_at'
+        'deleted_at',
     ];
 
     /**

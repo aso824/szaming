@@ -7,23 +7,26 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
- * App\Models\Shopping
+ * App\Models\Shopping.
  *
  * @property-read \App\Models\Shop $shop
  * @property-read \App\Models\User $user
  * @mixin \Eloquent
+ *
  * @property int $id
  * @property int|null $user_id
  * @property int|null $shop_id
  * @property \Carbon\Carbon $purchased_at
  * @property \Carbon\Carbon|null $created_at
  * @property \Carbon\Carbon|null $updated_at
+ *
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Shopping whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Shopping whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Shopping wherePurchasedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Shopping whereShopId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Shopping whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Shopping whereUserId($value)
+ *
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\ShoppingPosition[] $shoppingPositions
  */
 class Shopping extends Model
@@ -34,7 +37,7 @@ class Shopping extends Model
      * @var array
      */
     protected $dates = [
-        'purchased_at'
+        'purchased_at',
     ];
 
     /**

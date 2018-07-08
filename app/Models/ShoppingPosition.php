@@ -6,10 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
- * App\Models\ShoppingPosition
+ * App\Models\ShoppingPosition.
  *
  * @property-read \App\Models\Shopping $shopping
  * @mixin \Eloquent
+ *
  * @property int $id
  * @property int $shopping_id
  * @property string $name
@@ -17,6 +18,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property int $quantity
  * @property \Carbon\Carbon|null $created_at
  * @property \Carbon\Carbon|null $updated_at
+ *
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\ShoppingPosition whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\ShoppingPosition whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\ShoppingPosition whereName($value)
