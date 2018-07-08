@@ -1,8 +1,20 @@
-## Szaming app
+<h1 align="center">Szaming app</h1>
 
-Order food together, never forget about payments.
+<p align="center">
+ <a href="https://travis-ci.org/aso824/szaming">
+    <img src="https://travis-ci.org/aso824/szaming.svg?style=flat-square">
+ </a>
+ 
+ <a href="https://github.styleci.io/repos/140011227">
+    <img src="https://github.styleci.io/repos/140011227/shield?style=flat-square" alt="StyleCI">
+ </a>
+</p>
 
-## Installation
+<p align="center">
+ Order food together, never forget about payments.
+</p>
+
+## Installation?style=flat-square
 
 Like any other Laravel based project:
 
