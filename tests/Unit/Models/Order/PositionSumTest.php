@@ -31,7 +31,6 @@ class PositionSumTest extends TestCase
 
         $this->expectException(InvalidPriceException::class);
         $position->getSum();
-
     }
 
     public function testInvalidQuantity()

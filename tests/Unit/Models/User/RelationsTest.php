@@ -15,7 +15,7 @@ class RelationsTest extends TestCase
     {
         $user = factory(User::class)->create();
         $orders = factory(Order::class, 5)->create([
-            'user_id' => $user->id
+            'user_id' => $user->id,
         ]);
 
         $this->assertEmpty($orders->diff($user->orders));

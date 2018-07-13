@@ -15,7 +15,7 @@ class PositionRelationsTest extends TestCase
     {
         $order = factory(Order::class)->create();
         $position = factory(OrderPosition::class)->create([
-            'order_id' => $order->id
+            'order_id' => $order->id,
         ]);
 
         $this->assertEquals($order->id, $position->order->id);

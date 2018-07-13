@@ -2,8 +2,8 @@
 
 namespace Tests\Unit\Models\Shop;
 
-use App\Models\Shop;
 use App\Models\Order;
+use App\Models\Shop;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
@@ -15,7 +15,7 @@ class RelationsTest extends TestCase
     {
         $shop = factory(Shop::class)->create();
         $orders = factory(Order::class, 5)->create([
-            'shop_id' => $shop->id
+            'shop_id' => $shop->id,
         ]);
 
         $this->assertEmpty($orders->diff($shop->orders));
