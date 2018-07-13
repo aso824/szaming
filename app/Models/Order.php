@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
- * App\Models\Shopping.
+ * App\Models\Order.
  *
  * @property-read \App\Models\Shop $shop
  * @property-read \App\Models\User $user
@@ -20,16 +20,16 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @property \Carbon\Carbon|null $created_at
  * @property \Carbon\Carbon|null $updated_at
  *
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Shopping whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Shopping whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Shopping wherePurchasedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Shopping whereShopId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Shopping whereUpdatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Shopping whereUserId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Order whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Order whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Order wherePurchasedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Order whereShopId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Order whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Order whereUserId($value)
  *
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\ShoppingPosition[] $shoppingPositions
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\OrderPosition[] $orderPositions
  */
-class Shopping extends Model
+class Order extends Model
 {
     /**
      * The attributes that should be mutated to dates.
@@ -41,7 +41,7 @@ class Shopping extends Model
     ];
 
     /**
-     * Get shop where this shopping was.
+     * Get shop where this order was.
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
@@ -51,7 +51,7 @@ class Shopping extends Model
     }
 
     /**
-     * Get user who make this shopping.
+     * Get user who make this order.
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
@@ -61,12 +61,12 @@ class Shopping extends Model
     }
 
     /**
-     * Get all associated shopping positions.
+     * Get all associated order positions.
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function shoppingPositions(): HasMany
+    public function orderPositions(): HasMany
     {
-        return $this->hasMany(ShoppingPosition::class);
+        return $this->hasMany(OrderPosition::class);
     }
 }

@@ -28,7 +28,7 @@ use Illuminate\Notifications\Notifiable;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User whereRememberToken($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User whereUpdatedAt($value)
  *
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Shopping[] $shoppings
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Order[] $shoppings
  */
 class User extends Authenticatable
 {
@@ -53,12 +53,12 @@ class User extends Authenticatable
     ];
 
     /**
-     * Get all shoppings that user created.
+     * Get all orders that user created.
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function shoppings(): HasMany
+    public function orders(): HasMany
     {
-        return $this->hasMany(Shopping::class);
+        return $this->hasMany(Order::class);
     }
 }

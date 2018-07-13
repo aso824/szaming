@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Exceptions\Shopping;
+namespace App\Exceptions\Order;
 
 class InvalidPriceException extends \LogicException
 {

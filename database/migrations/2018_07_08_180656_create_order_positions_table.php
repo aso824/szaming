@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateShoppingPositionsTable extends Migration
+class CreateOrderPositionsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,10 @@ class CreateShoppingPositionsTable extends Migration
      */
     public function up(): void
     {
-        Schema::create('shopping_positions', function (Blueprint $table) {
+        Schema::create('order_positions', function (Blueprint $table) {
             $table->increments('id');
 
-            $table->unsignedInteger('shopping_id');
+            $table->unsignedInteger('order_id');
 
             $table->string('name');
 
@@ -27,8 +27,8 @@ class CreateShoppingPositionsTable extends Migration
 
             $table->timestamps();
 
-            $table->foreign('shopping_id')
-                  ->references('id')->on('shoppings')
+            $table->foreign('order_id')
+                  ->references('id')->on('orders')
                   ->onDelete('cascade');
         });
     }
@@ -40,10 +40,10 @@ class CreateShoppingPositionsTable extends Migration
      */
     public function down(): void
     {
-        Schema::table('shopping_positions', function (Blueprint $table) {
-            $table->dropForeign(['shopping_id']);
+        Schema::table('order_positions', function (Blueprint $table) {
+            $table->dropForeign(['order_id']);
         });
 
-        Schema::dropIfExists('shopping_positions');
+        Schema::dropIfExists('order_positions');
     }
 }
