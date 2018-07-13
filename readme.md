@@ -8,6 +8,10 @@
  <a href="https://github.styleci.io/repos/140011227">
     <img src="https://github.styleci.io/repos/140011227/shield?style=flat-square" alt="StyleCI">
  </a>
+ 
+ <a href='https://coveralls.io/github/aso824/szaming?branch=master'>
+    <img src='https://coveralls.io/repos/github/aso824/szaming/badge.svg?style=flat-square' alt='Coverage Status' />
+ </a>
 </p>
 
 <p align="center">
