@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 /**
  * App\Models\Shop.
  *
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Shopping[] $shoppings
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Order[] $orders
  *
  * @method static bool|null forceDelete()
  * @method static \Illuminate\Database\Query\Builder|\App\Models\Shop onlyTrashed()
@@ -48,12 +48,12 @@ class Shop extends Model
     ];
 
     /**
-     * Get all shoppings from this shop.
+     * Get all orders from this shop.
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function shoppings(): HasMany
+    public function orders(): HasMany
     {
-        return $this->hasMany(Shopping::class);
+        return $this->hasMany(Order::class);
     }
 }
