@@ -2,9 +2,11 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Collection;
 
 /**
  * App\Models\User.
@@ -19,6 +21,9 @@ use Illuminate\Notifications\Notifiable;
  * @property string|null $remember_token
  * @property \Carbon\Carbon|null $created_at
  * @property \Carbon\Carbon|null $updated_at
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\User[] $creditors
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\User[] $debtors
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Order[] $orders
  *
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User whereEmail($value)
@@ -27,8 +32,6 @@ use Illuminate\Notifications\Notifiable;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User wherePassword($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User whereRememberToken($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User whereUpdatedAt($value)
- *
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Order[] $shoppings
  */
 class User extends Authenticatable
 {
@@ -60,5 +63,49 @@ class User extends Authenticatable
     public function orders(): HasMany
     {
         return $this->hasMany(Order::class);
+    }
+
+    /**
+     * Get all users for whom this user has a debt, i.e this user should give `amount` to each user from this collection.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function creditors(): BelongsToMany
+    {
+        return $this->belongsToMany(self::class, 'debts', 'debtor_id', 'creditor_id')
+                    ->withPivot('amount');
+    }
+
+    /**
+     * Get all users who have a debt for this user, i.e. each user from this collection should give `amount` to this user.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function debtors(): BelongsToMany
+    {
+        return $this->belongsToMany(self::class, 'debts', 'creditor_id', 'debtor_id')
+                    ->withPivot('amount');
+    }
+
+    /**
+     * Get all debts, i.e. amount of money that this user should pay to others.
+     * Returns collection, where key is user ID and value is amount to pay.
+     *
+     * @return \Illuminate\Support\Collection
+     */
+    public function debts(): Collection
+    {
+        return $this->creditors()->where('amount', '>', 0)->pluck('amount', 'id');
+    }
+
+    /**
+     * Get all receivables, i.e. amount of money that users should pay to this user.
+     * Returns collection, where key is user ID and value is amount to pay.
+     *
+     * @return \Illuminate\Support\Collection
+     */
+    public function receivables(): Collection
+    {
+        return $this->debtors()->where('amount', '>', 0)->pluck('amount', 'id');
     }
 }
