@@ -21,7 +21,6 @@ use Illuminate\Support\Collection;
  * @property string|null $remember_token
  * @property \Carbon\Carbon|null $created_at
  * @property \Carbon\Carbon|null $updated_at
- *
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\User[] $creditors
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\User[] $debtors
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Order[] $orders
@@ -73,7 +72,8 @@ class User extends Authenticatable
      */
     public function creditors(): BelongsToMany
     {
-        return $this->belongsToMany(self::class, 'debts', 'debtor_id', 'creditor_id');
+        return $this->belongsToMany(self::class, 'debts', 'debtor_id', 'creditor_id')
+                    ->withPivot('amount');
     }
 
     /**
@@ -83,7 +83,8 @@ class User extends Authenticatable
      */
     public function debtors(): BelongsToMany
     {
-        return $this->belongsToMany(self::class, 'debts', 'creditor_id', 'debtor_id');
+        return $this->belongsToMany(self::class, 'debts', 'creditor_id', 'debtor_id')
+                    ->withPivot('amount');
     }
 
     /**
