@@ -10,7 +10,7 @@
  </a>
  
  <a href='https://coveralls.io/github/aso824/szaming?branch=master'>
-    <img src='https://coveralls.io/repos/github/aso824/szaming/badge.svg?style=flat-square' alt='Coverage Status' />
+    <img src='https://coveralls.io/repos/github/aso824/szaming/badge.svg?branch=master' alt='Coverage Status' />
  </a>
 </p>
 
