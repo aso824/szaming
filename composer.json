@@ -10,7 +10,8 @@
         "doctrine/dbal": "~2.3",
         "fideloper/proxy": "^4.0",
         "laravel/framework": "5.6.*",
-        "laravel/tinker": "^1.0"
+        "laravel/tinker": "^1.0",
+        "php-coveralls/php-coveralls": "^2.1"
     },
     "require-dev": {
         "filp/whoops": "^2.0",
