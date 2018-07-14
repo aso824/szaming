@@ -14,7 +14,7 @@ class UpdateProfile extends FormRequest
      */
     public function authorize(): bool
     {
-        $id = (int)$this->route('profile');
+        $id = (int) $this->route('profile');
 
         return $id === auth()->id();
     }
@@ -30,12 +30,12 @@ class UpdateProfile extends FormRequest
             'name'  => [
                 'required',
                 'between:3,20',
-                Rule::unique('users', 'name')->ignore($this->route('profile'))
+                Rule::unique('users', 'name')->ignore($this->route('profile')),
             ],
             'email' => [
                 'required',
                 'email',
-                Rule::unique('users', 'email')->ignore($this->route('profile'))
+                Rule::unique('users', 'email')->ignore($this->route('profile')),
             ],
         ];
     }
