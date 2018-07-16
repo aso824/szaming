@@ -162,6 +162,7 @@ return [
 
         Collective\Html\HtmlServiceProvider::class,
         App\Providers\FormComponentsServiceProvider::class,
+        App\Providers\User\BalanceViewServiceProvider::class,
     ],
 
     /*
@@ -214,5 +215,7 @@ return [
         'Form'         => Collective\Html\FormFacade::class,
         'Html'         => Collective\Html\HtmlFacade::class,
     ],
+
+    'currency' => env('APP_CURRENCY', '$'),
 
 ];
