@@ -21,7 +21,7 @@ class BalanceServiceTest extends TestCase
         $user2->creditors()->attach([
             $user2->id => [
                 'debtor_id' => $user1->id,
-                'amount' => 123,
+                'amount'    => 123,
             ],
         ]);
 
@@ -40,7 +40,7 @@ class BalanceServiceTest extends TestCase
         $user1->creditors()->attach([
             $user1->id => [
                 'debtor_id' => $user2->id,
-                'amount' => 123,
+                'amount'    => 123,
             ],
         ]);
 
@@ -59,14 +59,14 @@ class BalanceServiceTest extends TestCase
         $user2->creditors()->attach([
             $user2->id => [
                 'debtor_id' => $user1->id,
-                'amount' => 123,
+                'amount'    => 123,
             ],
         ]);
 
         $user1->creditors()->attach([
             $user1->id => [
                 'debtor_id' => $user2->id,
-                'amount' => 23,
+                'amount'    => 23,
             ],
         ]);
 

@@ -17,7 +17,7 @@ class BalanceInNavbarTest extends TestCase
         $user2->creditors()->attach([
             $user2->id => [
                 'debtor_id' => $user1->id,
-                'amount' => 123,
+                'amount'    => 123,
             ],
         ]);
 
