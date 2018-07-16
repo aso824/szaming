@@ -23,7 +23,7 @@ class BalanceViewServiceProvider extends ServiceProvider
             $formattedBalance = number_format($balance, 2);
 
             $view->with('balance', $formattedBalance)
-                 ->with('currency', config('app.currency'));
+                 ->with('currency', setting('currency', '$'));
         });
     }
 }
