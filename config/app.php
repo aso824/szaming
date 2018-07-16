@@ -216,6 +216,4 @@ return [
         'Html'         => Collective\Html\HtmlFacade::class,
     ],
 
-    'currency' => env('APP_CURRENCY', '$'),
-
 ];

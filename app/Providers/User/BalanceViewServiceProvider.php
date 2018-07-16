@@ -20,10 +20,12 @@ class BalanceViewServiceProvider extends ServiceProvider
             ]);
 
             $balance = $balanceService->getBalance();
-            $formattedBalance = number_format($balance, 2);
 
-            $view->with('balance', $formattedBalance)
-                 ->with('currency', config('app.currency'));
+            /** @var \App\Services\Price\PriceFormatter $formatter */
+            $formatter = app(\App\Services\Price\PriceFormatter::class);
+            $formattedBalance = $formatter->formatPrice($balance);
+
+            $view->with('balance', $formattedBalance);
         });
     }
 }

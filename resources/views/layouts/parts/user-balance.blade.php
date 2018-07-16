@@ -10,6 +10,6 @@
             @endif
         @endif
     " title="{{ __('Balance of your debts and receivables') }}">
-        {{ $balance }} {{ $currency }}
+        {{ $balance }}
     </a>
 </li>
