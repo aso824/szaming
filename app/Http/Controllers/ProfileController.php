@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\User\UpdateProfile;
+use App\Http\Requests\User\UpdateProfileRequest;
 use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
@@ -24,11 +24,11 @@ class ProfileController extends Controller
     /**
      * Update User profile.
      *
-     * @param \App\Http\Requests\User\UpdateProfile $request
+     * @param \App\Http\Requests\User\UpdateProfileRequest $request
      *
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(UpdateProfile $request): RedirectResponse
+    public function update(UpdateProfileRequest $request): RedirectResponse
     {
         $data = $request->validated();
 
