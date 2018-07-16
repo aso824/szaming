@@ -7,7 +7,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Routing\Route;
 use Tests\TestCase;
 
-class UpdateProfileTest extends TestCase
+class UpdateProfileRequestTest extends TestCase
 {
     use RefreshDatabase;
 
