@@ -15,7 +15,7 @@ class BalanceServiceTest extends TestCase
 
         /** @var \App\Services\User\BalanceService $service */
         $service = app(\App\Services\User\BalanceService::class, [
-            'user' => $user1
+            'user' => $user1,
         ]);
 
         $user2->creditors()->attach([
@@ -34,7 +34,7 @@ class BalanceServiceTest extends TestCase
 
         /** @var \App\Services\User\BalanceService $service */
         $service = app(\App\Services\User\BalanceService::class, [
-            'user' => $user1
+            'user' => $user1,
         ]);
 
         $user1->creditors()->attach([
@@ -53,7 +53,7 @@ class BalanceServiceTest extends TestCase
 
         /** @var \App\Services\User\BalanceService $service */
         $service = app(\App\Services\User\BalanceService::class, [
-            'user' => $user1
+            'user' => $user1,
         ]);
 
         $user2->creditors()->attach([
