@@ -12,7 +12,7 @@ class UpdateProfileTest extends TestCase
 
     protected $newData = [
         'email' => 'test@example.com',
-        'name' => 'Test'
+        'name'  => 'Test',
     ];
 
     public function testIndexView(): void

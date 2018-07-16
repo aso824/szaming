@@ -16,7 +16,7 @@ class UpdateProfileRequestTest extends TestCase
         $user = factory(\App\Models\User::class)->create();
         $this->actingAs($user);
 
-        $request = new UpdateProfileRequest([], [], [], [], [], ['REQUEST_URI' => 'profile/' . $user->id]);
+        $request = new UpdateProfileRequest([], [], [], [], [], ['REQUEST_URI' => 'profile/'.$user->id]);
         $request->setRouteResolver(function () use ($request) {
             return (new Route(['PUT', 'PATCH'], 'profile/{profile}', []))->bind($request);
         });
