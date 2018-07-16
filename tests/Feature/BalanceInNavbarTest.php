@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\Services\Price\PriceFormatter;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
@@ -21,10 +22,16 @@ class BalanceInNavbarTest extends TestCase
             ],
         ]);
 
-        $currency = config('app.currency');
-
         $response = $this->get(route('home'));
 
-        $response->assertSee("-123.00 {$currency}");
+        $expectedResultFormatted = $this->getPriceFormatter()->formatPrice('-123');
+        $response->assertSee($expectedResultFormatted);
+    }
+
+    protected function getPriceFormatter(): PriceFormatter
+    {
+        config()->set('settings.path', storage_path('settings_testing.json'));
+
+        return app(PriceFormatter::class);
     }
 }
