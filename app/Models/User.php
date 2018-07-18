@@ -66,6 +66,19 @@ class User extends Authenticatable
     }
 
     /**
+     * Get all order positions that this user is associated with.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function orderPositions(): BelongsToMany
+    {
+        return $this->belongsToMany(
+            OrderPosition::class,
+            'order_position_users'
+        );
+    }
+
+    /**
      * Get all users for whom this user has a debt, i.e this user should give `amount` to each user from this collection.
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany

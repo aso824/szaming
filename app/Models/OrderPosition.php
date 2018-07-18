@@ -6,6 +6,8 @@ use App\Exceptions\Order\InvalidPriceException;
 use App\Exceptions\Order\InvalidQuantityException;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
  * App\Models\OrderPosition.
@@ -39,6 +41,19 @@ class OrderPosition extends Model
     public function order(): BelongsTo
     {
         return $this->belongsTo(Order::class);
+    }
+
+    /**
+     * Get all users associated with this order position.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function users(): BelongsToMany
+    {
+        return $this->belongsToMany(
+            User::class,
+            'order_position_users'
+        );
     }
 
     /**
