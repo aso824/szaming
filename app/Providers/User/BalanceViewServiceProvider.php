@@ -2,8 +2,8 @@
 
 namespace App\Providers\User;
 
-use App\Services\User\BalanceService;
 use App\Services\Contracts\User\BalanceService as BalanceServiceInterface;
+use App\Services\User\BalanceService;
 use App\ViewComposers\User\BalanceViewComposer;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;

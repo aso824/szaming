@@ -4,7 +4,6 @@ namespace Tests\Unit\Services\User;
 
 use App\Services\Contracts\User\BalanceService as BalanceServiceInterface;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\View\View;
 use Tests\TestCase;
 
 class BalanceServiceTest extends TestCase

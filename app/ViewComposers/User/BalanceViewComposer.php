@@ -26,7 +26,7 @@ class BalanceViewComposer
      * BalanceViewComposer constructor.
      *
      * @param \App\Services\Contracts\User\BalanceService $balanceService
-     * @param \App\Services\Price\PriceFormatter $priceFormatter
+     * @param \App\Services\Price\PriceFormatter          $priceFormatter
      */
     public function __construct(BalanceService $balanceService, PriceFormatter $priceFormatter)
     {
