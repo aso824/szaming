@@ -22,7 +22,6 @@ use Illuminate\Support\Collection;
  * @property string|null $remember_token
  * @property \Carbon\Carbon|null $created_at
  * @property \Carbon\Carbon|null $updated_at
- *
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\User[] $creditors
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\User[] $debtors
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Order[] $orders
