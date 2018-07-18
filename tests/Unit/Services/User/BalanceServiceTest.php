@@ -2,12 +2,21 @@
 
 namespace Tests\Unit\Services\User;
 
+use App\Services\Contracts\User\BalanceService as BalanceServiceInterface;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\View\View;
 use Tests\TestCase;
 
 class BalanceServiceTest extends TestCase
 {
     use RefreshDatabase;
+
+    public function testBalanceServiceInstance(): void
+    {
+        $service = app(\App\Services\User\BalanceService::class);
+
+        $this->assertInstanceOf(BalanceServiceInterface::class, $service);
+    }
 
     public function testDebts(): void
     {
