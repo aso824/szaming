@@ -12,6 +12,7 @@ use Illuminate\Support\Collection;
  * App\Models\User.
  *
  * @property-read \Illuminate\Notifications\DatabaseNotificationCollection|\Illuminate\Notifications\DatabaseNotification[] $notifications
+ *
  * @mixin \Eloquent
  *
  * @property int $id
@@ -32,6 +33,8 @@ use Illuminate\Support\Collection;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User wherePassword($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User whereRememberToken($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User whereUpdatedAt($value)
+ *
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\OrderPosition[] $orderPositions
  */
 class User extends Authenticatable
 {
@@ -63,6 +66,19 @@ class User extends Authenticatable
     public function orders(): HasMany
     {
         return $this->hasMany(Order::class);
+    }
+
+    /**
+     * Get all order positions that this user is associated with.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function orderPositions(): BelongsToMany
+    {
+        return $this->belongsToMany(
+            OrderPosition::class,
+            'order_position_users'
+        );
     }
 
     /**

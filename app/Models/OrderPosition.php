@@ -6,11 +6,13 @@ use App\Exceptions\Order\InvalidPriceException;
 use App\Exceptions\Order\InvalidQuantityException;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 /**
  * App\Models\OrderPosition.
  *
  * @property-read \App\Models\Order $order
+ *
  * @mixin \Eloquent
  *
  * @property int $id
@@ -28,6 +30,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\OrderPosition whereQuantity($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\OrderPosition whereOrderId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\OrderPosition whereUpdatedAt($value)
+ *
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\User[] $users
  */
 class OrderPosition extends Model
 {
@@ -39,6 +43,19 @@ class OrderPosition extends Model
     public function order(): BelongsTo
     {
         return $this->belongsTo(Order::class);
+    }
+
+    /**
+     * Get all users associated with this order position.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function users(): BelongsToMany
+    {
+        return $this->belongsToMany(
+            User::class,
+            'order_position_users'
+        );
     }
 
     /**
