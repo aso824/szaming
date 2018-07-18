@@ -13,6 +13,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * App\Models\OrderPosition.
  *
  * @property-read \App\Models\Order $order
+ *
  * @mixin \Eloquent
  *
  * @property int $id
@@ -30,6 +31,8 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\OrderPosition whereQuantity($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\OrderPosition whereOrderId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\OrderPosition whereUpdatedAt($value)
+ *
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\User[] $users
  */
 class OrderPosition extends Model
 {

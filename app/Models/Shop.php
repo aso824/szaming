@@ -16,6 +16,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @method static bool|null restore()
  * @method static \Illuminate\Database\Query\Builder|\App\Models\Shop withTrashed()
  * @method static \Illuminate\Database\Query\Builder|\App\Models\Shop withoutTrashed()
+ *
  * @mixin \Eloquent
  *
  * @property int $id

@@ -11,6 +11,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  *
  * @property-read \App\Models\Shop $shop
  * @property-read \App\Models\User $user
+ *
  * @mixin \Eloquent
  *
  * @property int $id

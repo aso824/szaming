@@ -12,6 +12,7 @@ use Illuminate\Support\Collection;
  * App\Models\User.
  *
  * @property-read \Illuminate\Notifications\DatabaseNotificationCollection|\Illuminate\Notifications\DatabaseNotification[] $notifications
+ *
  * @mixin \Eloquent
  *
  * @property int $id
@@ -21,6 +22,7 @@ use Illuminate\Support\Collection;
  * @property string|null $remember_token
  * @property \Carbon\Carbon|null $created_at
  * @property \Carbon\Carbon|null $updated_at
+ *
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\User[] $creditors
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\User[] $debtors
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Order[] $orders
@@ -32,6 +34,8 @@ use Illuminate\Support\Collection;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User wherePassword($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User whereRememberToken($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User whereUpdatedAt($value)
+ *
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\OrderPosition[] $orderPositions
  */
 class User extends Authenticatable
 {
