@@ -2,6 +2,9 @@
 
 namespace App\Providers\User;
 
+use App\Services\Contracts\User\BalanceService as BalanceServiceInterface;
+use App\Services\User\BalanceService;
+use App\ViewComposers\User\BalanceViewComposer;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 
@@ -14,18 +17,24 @@ class BalanceViewServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        View::composer('layouts.parts.user-balance', function ($view) {
-            $balanceService = app(\App\Services\User\BalanceService::class, [
-                'user' => auth()->user(),
-            ]);
+        $this->bindContainer();
 
-            $balance = $balanceService->getBalance();
+        View::composer('layouts.parts.user-balance', BalanceViewComposer::class);
+    }
 
-            /** @var \App\Services\Price\PriceFormatter $formatter */
-            $formatter = app(\App\Services\Price\PriceFormatter::class);
-            $formattedBalance = $formatter->formatPrice($balance);
-
-            $view->with('balance', $formattedBalance);
-        });
+    /**
+     * Bind BalanceService in case of ViewComposer.
+     *
+     * @return void
+     */
+    protected function bindContainer(): void
+    {
+        $this->app->when(BalanceViewComposer::class)
+            ->needs(BalanceServiceInterface::class)
+            ->give(function () {
+                return app(BalanceService::class, [
+                    'user' => auth()->user(),
+                ]);
+            });
     }
 }

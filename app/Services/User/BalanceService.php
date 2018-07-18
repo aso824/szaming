@@ -3,8 +3,9 @@
 namespace App\Services\User;
 
 use App\Models\User;
+use App\Services\Contracts\User\BalanceService as BalanceServiceInterface;
 
-class BalanceService
+class BalanceService implements BalanceServiceInterface
 {
     /**
      * The user for whom the account balance will be calculated.
@@ -14,9 +15,7 @@ class BalanceService
     protected $user;
 
     /**
-     * BalanceService constructor.
-     *
-     * @param \App\Models\User $user
+     * {@inheritdoc}
      */
     public function __construct(User $user)
     {
@@ -24,9 +23,7 @@ class BalanceService
     }
 
     /**
-     * Get user's account balance.
-     *
-     * @return float
+     * {@inheritdoc}
      */
     public function getBalance(): float
     {
