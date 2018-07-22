@@ -133,7 +133,7 @@ class User extends Authenticatable
      * @param \App\Models\User $user
      * @param float            $amount
      */
-    public function setDebtFor(self $user, float $amount): void
+    public function setDebtFor(User $user, float $amount): void
     {
         if ($amount < 0) {
             throw new InvalidDebtAmountException('Debt amount must be positive.');
@@ -149,6 +149,8 @@ class User extends Authenticatable
             return;
         }
 
+        $amount = round($amount, 4);
+
         $user->creditors()->attach([
             $user->id => [
                 'debtor_id' => $this->id,
@@ -162,7 +164,7 @@ class User extends Authenticatable
      *
      * @param \App\Models\User $user
      */
-    public function removeDebtFor(self $user): void
+    public function removeDebtFor(User $user): void
     {
         $this->creditors()->detach($user);
     }

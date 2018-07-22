@@ -3,12 +3,29 @@
 namespace App\Services\Order;
 
 use App\Models\Order;
-use App\Models\User;
 use App\Services\Contracts\Order\OrderProcessService as OrderProcessServiceInterface;
+use App\Services\Contracts\User\DebtsService;
 use Illuminate\Support\Collection;
 
 class OrderProcessService implements OrderProcessServiceInterface
 {
+    /**
+     * Service that will be used for changing users debts.
+     *
+     * @var \App\Services\Contracts\User\DebtsService
+     */
+    protected $debtsService;
+
+    /**
+     * OrderProcessService constructor.
+     *
+     * @param \App\Services\Contracts\User\DebtsService $debtsService
+     */
+    public function __construct(DebtsService $debtsService)
+    {
+        $this->debtsService = $debtsService;
+    }
+
     /**
      * {@inheritdoc}
      */
@@ -16,7 +33,9 @@ class OrderProcessService implements OrderProcessServiceInterface
     {
         $debts = $this->sumUsersDebts($order->orderPositions);
 
-        $this->setUsersDebts($order->user_id, $debts);
+        $this->debtsService->actingAs($order->user);
+
+        $this->setUsersDebts($debts);
     }
 
     /**
@@ -24,11 +43,11 @@ class OrderProcessService implements OrderProcessServiceInterface
      *
      * @param \Illuminate\Support\Collection $orderPositions
      *
-     * @return array
+     * @return \Illuminate\Support\Collection
      */
-    protected function sumUsersDebts(Collection $orderPositions): array
+    protected function sumUsersDebts(Collection $orderPositions): Collection
     {
-        $debts = [];
+        $debts = new Collection();
 
         /** @var \App\Models\OrderPosition $position */
         foreach ($orderPositions as $position) {
@@ -36,10 +55,11 @@ class OrderProcessService implements OrderProcessServiceInterface
 
             /** @var \App\Models\User $user */
             foreach ($position->users as $user) {
-                if (!array_key_exists($user->id, $debts)) {
-                    $debts[$user->id] = $sumPart;
+                if ($foundUser = $debts->keyBy('id')->get($user->id)) {
+                    $foundUser->debtToBeAdded += $sumPart;
                 } else {
-                    $debts[$user->id] += $sumPart;
+                    $user->debtToBeAdded = $sumPart;
+                    $debts->push($user);
                 }
             }
         }
@@ -50,31 +70,12 @@ class OrderProcessService implements OrderProcessServiceInterface
     /**
      * Set debts for users from order.
      *
-     * @param int   $creditorId
-     * @param array $debts
+     * @param \Illuminate\Support\Collection $debts
      */
-    protected function setUsersDebts(int $creditorId, array $debts): void
+    protected function setUsersDebts(Collection $debts): void
     {
-        /** @var \App\Models\User $creditor */
-        $creditor = User::findOrFail($creditorId);
-        $creditorDebts = $creditor->debts();
-
-        foreach ($debts as $userId => $sum) {
-            $debtForThisUser = $creditorDebts[$userId] ?? 0;
-            $finalBalance = $sum - $debtForThisUser;
-
-            $finalBalance = round($finalBalance, 4);
-
-            /** @var \App\Models\User $user */
-            $user = User::findOrFail($userId);
-
-            if ($finalBalance > 0) {
-                $user->setDebtFor($creditor, $finalBalance);
-                $creditor->removeDebtFor($user);
-            } else {
-                $creditor->setDebtFor($user, abs($finalBalance));
-                $user->removeDebtFor($creditor);
-            }
+        foreach ($debts as $debtor) {
+            $this->debtsService->addReceivable($debtor, $debtor->debtToBeAdded);
         }
     }
 }
