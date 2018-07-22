@@ -55,7 +55,7 @@ class OrderProcessServiceTest extends TestCase
 
         $result = [];
         foreach ($users as $user) {
-            if (! $user) {
+            if (!$user) {
                 continue;
             }
 

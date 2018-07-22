@@ -36,7 +36,7 @@ class OrderProcessService implements OrderProcessServiceInterface
 
             /** @var \App\Models\User $user */
             foreach ($position->users as $user) {
-                if (! array_key_exists($user->id, $debts)) {
+                if (!array_key_exists($user->id, $debts)) {
                     $debts[$user->id] = $sumPart;
                 } else {
                     $debts[$user->id] += $sumPart;
