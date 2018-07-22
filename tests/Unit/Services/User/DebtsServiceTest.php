@@ -47,6 +47,17 @@ class DebtsServiceTest extends TestCase
         $freshService->addDebt($this->user1, 10);
     }
 
+    public function testAssigningInConstructor(): void
+    {
+        $freshService = app(DebtsService::class, [
+            'user' => $this->user1,
+        ]);
+
+        $freshService->addDebt($this->user2, 7);
+
+        $this->assertEquals(-7.0, $this->balanceService->getBalance());
+    }
+
     public function testAddingDebt(): void
     {
         $this->debtsService->addDebt($this->user2, 7);

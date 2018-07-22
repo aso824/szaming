@@ -16,14 +16,15 @@ use Illuminate\Support\Collection;
  * @property-read \Illuminate\Notifications\DatabaseNotificationCollection|\Illuminate\Notifications\DatabaseNotification[] $notifications
  *
  * @mixin \Eloquent
- *
  * @property int $id
+ *
  * @property string $name
  * @property string $email
  * @property string $password
  * @property string|null $remember_token
  * @property \Carbon\Carbon|null $created_at
  * @property \Carbon\Carbon|null $updated_at
+ *
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\User[] $creditors
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\User[] $debtors
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Order[] $orders
@@ -133,7 +134,7 @@ class User extends Authenticatable
      * @param \App\Models\User $user
      * @param float            $amount
      */
-    public function setDebtFor(self $user, float $amount): void
+    public function setDebtFor(User $user, float $amount): void
     {
         if ($amount < 0) {
             throw new InvalidDebtAmountException('Debt amount must be positive.');
@@ -164,7 +165,7 @@ class User extends Authenticatable
      *
      * @param \App\Models\User $user
      */
-    public function removeDebtFor(self $user): void
+    public function removeDebtFor(User $user): void
     {
         $this->creditors()->detach($user);
     }

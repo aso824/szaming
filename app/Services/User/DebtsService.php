@@ -19,7 +19,7 @@ class DebtsService implements DebtsServiceInterface
      */
     public function __construct(?User $user = null)
     {
-        //
+        $this->user = $user;
     }
 
     /**
@@ -91,8 +91,8 @@ class DebtsService implements DebtsServiceInterface
      */
     protected function checkUserIsNotNull(): void
     {
-        if (!$this->user) {
-            throw new \InvalidArgumentException('User was not set.');
+        if (!$this->user->exists) {
+            throw new \InvalidArgumentException('User was not set or doesn\'t exist.');
         }
     }
 }
