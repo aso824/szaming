@@ -140,4 +140,14 @@ class User extends Authenticatable
             ],
         ]);
     }
+
+    /**
+     * Remove debt for given user.
+     *
+     * @param \App\Models\User $user
+     */
+    public function removeDebtFor(User $user): void
+    {
+        $this->creditors()->detach($user);
+    }
 }

@@ -20,4 +20,18 @@ class DebtSetterTest extends TestCase
             2 => 10,
         ], $user1->debts()->toArray());
     }
+
+    /**
+     * @depends testDebtsSetter
+     */
+    public function testDebtsRemover(): void
+    {
+        [$user1, $user2] = factory(User::class, 2)->create();
+
+        $user1->setDebtFor($user2, 10);
+
+        $user1->removeDebtFor($user2);
+
+        $this->assertEmpty($user1->debts()->toArray());
+    }
 }
