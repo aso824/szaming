@@ -38,6 +38,15 @@ class DebtsServiceTest extends TestCase
         $this->debtsService->actingAs($this->user1);
     }
 
+    public function testExceptionWithoutUser(): void
+    {
+        $freshService = app(DebtsService::class);
+
+        $this->expectException(\InvalidArgumentException::class);
+
+        $freshService->addDebt($this->user1, 10);
+    }
+
     public function testAddingDebt(): void
     {
         $this->debtsService->addDebt($this->user2, 7);
@@ -66,5 +75,13 @@ class DebtsServiceTest extends TestCase
         $this->debtsService->addReceivable($this->user2, 4);
 
         $this->assertEquals(-3.0, $this->balanceService->getBalance());
+    }
+
+    public function testBothButInReverseOrder(): void
+    {
+        $this->debtsService->addReceivable($this->user2, 10);
+        $this->debtsService->addDebt($this->user2, 4);
+
+        $this->assertEquals(6.0, $this->balanceService->getBalance());
     }
 }

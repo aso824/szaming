@@ -19,9 +19,7 @@ class DebtsService implements DebtsServiceInterface
      */
     public function __construct(?User $user = null)
     {
-        if ($user) {
-            $this->actingAs($user);
-        }
+        //
     }
 
     /**
@@ -44,7 +42,7 @@ class DebtsService implements DebtsServiceInterface
         $receivables = 0;
 
         if ($debtRow = $this->user->debtors()->where('id', $creditor->id)->first()) {
-            $receivables = (float)$debtRow->pivot->amount;
+            $receivables = (float) $debtRow->pivot->amount;
         }
 
         $difference = $receivables - $amount;
@@ -70,7 +68,7 @@ class DebtsService implements DebtsServiceInterface
         $debts = 0;
 
         if ($debtRow = $this->user->creditors()->where('id', $debtor->id)->first()) {
-            $debts = (float)$debtRow->pivot->amount;
+            $debts = (float) $debtRow->pivot->amount;
         }
 
         $difference = $amount - $debts;

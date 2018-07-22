@@ -149,6 +149,8 @@ class User extends Authenticatable
             return;
         }
 
+        $amount = round($amount, 4);
+
         $user->creditors()->attach([
             $user->id => [
                 'debtor_id' => $this->id,
