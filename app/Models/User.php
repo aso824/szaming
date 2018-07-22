@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use App\Exceptions\User\InvalidDebtAmountException;
+use App\Exceptions\User\InvalidDebtorException;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -123,5 +125,45 @@ class User extends Authenticatable
     public function receivables(): Collection
     {
         return $this->debtors()->where('amount', '>', 0)->pluck('amount', 'id');
+    }
+
+    /**
+     * Set debt for given user.
+     *
+     * @param \App\Models\User $user
+     * @param float            $amount
+     */
+    public function setDebtFor(self $user, float $amount): void
+    {
+        if ($amount < 0) {
+            throw new InvalidDebtAmountException('Debt amount must be positive.');
+        }
+
+        if ($this->id === $user->id) {
+            throw new InvalidDebtorException('Can\'t set debt for self.');
+        }
+
+        $this->removeDebtFor($user);
+
+        if ($amount === 0.0) {
+            return;
+        }
+
+        $user->creditors()->attach([
+            $user->id => [
+                'debtor_id' => $this->id,
+                'amount'    => $amount,
+            ],
+        ]);
+    }
+
+    /**
+     * Remove debt for given user.
+     *
+     * @param \App\Models\User $user
+     */
+    public function removeDebtFor(self $user): void
+    {
+        $this->creditors()->detach($user);
     }
 }

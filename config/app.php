@@ -163,6 +163,7 @@ return [
         Collective\Html\HtmlServiceProvider::class,
         App\Providers\FormComponentsServiceProvider::class,
         App\Providers\User\BalanceViewServiceProvider::class,
+        App\Providers\Order\BalanceProcessServiceProvider::class,
     ],
 
     /*
