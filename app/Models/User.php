@@ -124,4 +124,20 @@ class User extends Authenticatable
     {
         return $this->debtors()->where('amount', '>', 0)->pluck('amount', 'id');
     }
+
+    /**
+     * Set debt for given user.
+     *
+     * @param \App\Models\User $user
+     * @param float            $amount
+     */
+    public function setDebtFor(User $user, float $amount): void
+    {
+        $user->creditors()->attach([
+            $user->id => [
+                'debtor_id' => $this->id,
+                'amount'    => $amount,
+            ],
+        ]);
+    }
 }
