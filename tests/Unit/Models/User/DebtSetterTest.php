@@ -3,6 +3,7 @@
 namespace Tests\Unit\Models\User;
 
 use App\Exceptions\User\InvalidDebtAmountException;
+use App\Exceptions\User\InvalidDebtorException;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
@@ -60,5 +61,14 @@ class DebtSetterTest extends TestCase
         $user1->setDebtFor($user2, 0);
 
         $this->assertEmpty($user1->debts()->toArray());
+    }
+
+    public function testSetDebtToSelf(): void
+    {
+        $user = factory(User::class)->create();
+
+        $this->expectException(InvalidDebtorException::class);
+
+        $user->setDebtFor($user, 10);
     }
 }

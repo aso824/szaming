@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Exceptions\User\InvalidDebtAmountException;
+use App\Exceptions\User\InvalidDebtorException;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -136,6 +137,10 @@ class User extends Authenticatable
     {
         if ($amount < 0) {
             throw new InvalidDebtAmountException('Debt amount must be positive.');
+        }
+
+        if ($this->id === $user->id) {
+            throw new InvalidDebtorException('Can\'t set debt for self.');
         }
 
         $this->removeDebtFor($user);
