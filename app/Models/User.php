@@ -138,8 +138,10 @@ class User extends Authenticatable
             throw new InvalidDebtAmountException('Debt amount must be positive.');
         }
 
+        $this->removeDebtFor($user);
+
         if ($amount === 0.0) {
-            $this->removeDebtFor($user);
+            return;
         }
 
         $user->creditors()->attach([
