@@ -12,5 +12,5 @@ interface OrderProcessService
      *
      * @param \App\Models\Order $order
      */
-    public static function processOrder(Order $order): void;
+    public function processOrder(Order $order): void;
 }

@@ -12,11 +12,11 @@ class OrderProcessService implements OrderProcessServiceInterface
     /**
      * {@inheritdoc}
      */
-    public static function processOrder(Order $order): void
+    public function processOrder(Order $order): void
     {
-        $debts = static::sumUsersDebts($order->orderPositions);
+        $debts = $this->sumUsersDebts($order->orderPositions);
 
-        static::setUsersDebts($order->user_id, $debts);
+        $this->setUsersDebts($order->user_id, $debts);
     }
 
     /**
@@ -26,7 +26,7 @@ class OrderProcessService implements OrderProcessServiceInterface
      *
      * @return array
      */
-    protected static function sumUsersDebts(Collection $orderPositions): array
+    protected function sumUsersDebts(Collection $orderPositions): array
     {
         $debts = [];
 
@@ -53,7 +53,7 @@ class OrderProcessService implements OrderProcessServiceInterface
      * @param int   $creditorId
      * @param array $debts
      */
-    protected static function setUsersDebts(int $creditorId, array $debts): void
+    protected function setUsersDebts(int $creditorId, array $debts): void
     {
         /** @var \App\Models\User $creditor */
         $creditor = User::findOrFail($creditorId);
