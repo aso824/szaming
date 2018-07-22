@@ -7,16 +7,31 @@
 
 require('./bootstrap');
 
-window.Vue = require('vue');
+if ($('#addOrderPosition').length) {
+    var nextOrderPositionNumber = 1;
+}
 
-/**
- * Next, we will create a fresh Vue application instance and attach it to
- * the page. Then, you may begin adding components to this application
- * or customize the JavaScript scaffolding to fit your unique needs.
- */
+$('#addOrderPosition').click(function() {
+    let template = $('.orderRow:first');
+    let container = $('#orderPositions');
 
-Vue.component('example-component', require('./components/ExampleComponent.vue'));
+    let clone = template.clone();
+    clone.attr('data-row-id', nextOrderPositionNumber);
+    clone.find('input').each(function() {
+        $(this).attr('name', $(this).attr('name').replace('[0]', '[' + nextOrderPositionNumber + ']'))
+               .val('');
+    });
 
-const app = new Vue({
-    el: '#app'
+    container.append(clone);
+
+    nextOrderPositionNumber++;
+    $('.removeOrderPosition').css('visibility', 'visible');
+});
+
+$(document).on('click', '.removeOrderPosition', function() {
+    if ($('.orderRow').length === 2) {
+        $('.removeOrderPosition').css('visibility', 'hidden');
+    }
+
+    $(this).closest('.orderRow').remove();
 });

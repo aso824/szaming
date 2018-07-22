@@ -8,6 +8,14 @@
             <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
         </li>
     @else
+        <li class="nav-item">
+            <a href="{{ route('order.create') }}"
+               class="nav-link fa fa-2x fa-plus-circle text-success"
+               id="navAddNew"
+               title="{{ __('Add new order') }}"
+            ></a>
+        </li>
+
         @include('layouts.parts.user-balance')
 
         <li class="nav-item dropdown">
