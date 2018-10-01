@@ -7,6 +7,8 @@
 
 require('./bootstrap');
 
+import 'select2';
+
 if ($('#addOrderPosition').length) {
     var nextOrderPositionNumber = 1;
 }
@@ -34,4 +36,23 @@ $(document).on('click', '.removeOrderPosition', function() {
     }
 
     $(this).closest('.orderRow').remove();
+});
+
+$(document).ready(function() {
+    $('[data-select2-ajax]').select2({
+        ajax: {
+            url: function (){
+                return $(this).data('select2Ajax');
+            },
+            dataType: 'json',
+            processResults: function (data) {
+                return {
+                    results: Object.keys(data).map(function(key) {
+                        return {id: key, text: data[key]};
+                    })
+                };
+            },
+        },
+        tags: $(this).data('select2Tags') === 'true'
+    });
 });

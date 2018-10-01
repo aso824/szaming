@@ -18,7 +18,12 @@
                                 </div>
 
                                 <div class="col">
-                                    {{ Form::text('shop', '', ['class' => 'form-control']) }}
+                                    {{ Form::select('shop', [], null, [
+                                        'class' => 'form-control',
+                                        'id' => 'shop',
+                                        'data-select2-ajax' => route('ajax.shops.index'),
+                                        'data-select2-tags' => 'true',
+                                    ]) }}
                                 </div>
                             </div>
 

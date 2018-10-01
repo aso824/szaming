@@ -16,8 +16,9 @@
     "dependencies": {
         "axios": "^0.18",
         "bootstrap": "^4.0.0",
-        "popper.js": "^1.12",
+        "font-awesome": "^4.7.0",
         "jquery": "^3.2",
-        "font-awesome": "^4.7.0"
+        "popper.js": "^1.12",
+        "select2": "^4.0.6-rc.1"
     }
 }
