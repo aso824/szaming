@@ -24,7 +24,7 @@ class BalanceViewModel
     /**
      * BalanceViewModel constructor.
      *
-     * @param \App\Services\Price\PriceFormatter $priceFormatter
+     * @param \App\Services\Price\PriceFormatter         $priceFormatter
      * @param \Illuminate\Contracts\Auth\Authenticatable $user
      */
     public function __construct(PriceFormatter $priceFormatter, UserContract $user)
