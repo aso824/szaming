@@ -5,6 +5,7 @@ namespace App\Http\ViewModels\Balance;
 use App\Models\User;
 use App\Services\Price\PriceFormatter;
 use Illuminate\Support\Collection;
+use Illuminate\Contracts\Auth\Authenticatable as UserContract;
 
 class BalanceViewModel
 {
@@ -14,23 +15,33 @@ class BalanceViewModel
     protected $priceFormatter;
 
     /**
+     * Current logged user.
+     *
+     * @var \Illuminate\Contracts\Auth\Authenticatable
+     */
+    protected $currentUser;
+
+    /**
      * BalanceViewModel constructor.
      *
      * @param \App\Services\Price\PriceFormatter $priceFormatter
+     * @param \Illuminate\Contracts\Auth\Authenticatable $user
      */
-    public function __construct(PriceFormatter $priceFormatter)
+    public function __construct(PriceFormatter $priceFormatter, UserContract $user)
     {
         $this->priceFormatter = $priceFormatter;
+
+        $this->currentUser = $user;
     }
 
     /**
      * Get current logged user instance.
      *
-     * @return \App\Models\User
+     * @return \App\Models\User|\Illuminate\Contracts\Auth\Authenticatable
      */
-    public function getUser(): User
+    public function getUser(): UserContract
     {
-        return auth()->user();
+        return $this->currentUser;
     }
 
     /**
