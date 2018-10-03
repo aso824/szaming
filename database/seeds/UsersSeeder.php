@@ -15,7 +15,7 @@ class UsersSeeder extends Seeder
         foreach ($users as $user) {
             foreach (User::where('id', '!=', $user->id)->limit((int) ($usersCount / 2))->inRandomOrder()->get() as $u) {
                 $user->debtors()->attach($u, [
-                    'amount' => random_int(50, 500)
+                    'amount' => random_int(50, 500),
                 ]);
             }
         }
