@@ -36,6 +36,15 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 class OrderPosition extends Model
 {
     /**
+     * The attributes that should be mass-assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'order_id', 'name', 'price', 'quantity',
+    ];
+
+    /**
      * Get associated order.
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo

@@ -33,6 +33,15 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class Order extends Model
 {
     /**
+     * The attributes that should be mass-assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'user_id', 'shop_id', 'purchased_at',
+    ];
+
+    /**
      * The attributes that should be mutated to dates.
      *
      * @var array
