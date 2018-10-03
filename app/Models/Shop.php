@@ -40,6 +40,15 @@ class Shop extends Model
     use SoftDeletes;
 
     /**
+     * The attributes that should be mass-assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'name', 'address', 'phone',
+    ];
+
+    /**
      * The attributes that should be mutated to dates.
      *
      * @var array

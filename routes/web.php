@@ -21,10 +21,10 @@ Route::middleware(['auth'])->group(function () {
     ]);
 
     Route::resource('order', 'OrderController')->only([
-        'create', 'store'
+        'create', 'store',
     ]);
 
-    Route::group(['prefix' => 'ajax', 'namespace' => 'Ajax'], function() {
+    Route::group(['prefix' => 'ajax', 'namespace' => 'Ajax'], function () {
         Route::get('shops', 'ShopsController@index')->name('ajax.shops.index');
         Route::get('users', 'UsersController@index')->name('ajax.users.index');
     });
