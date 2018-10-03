@@ -49,11 +49,11 @@ class BalanceViewModelTest extends TestCase
     public function testDebtors(): void
     {
         $this->user->debtors()->save($this->createUser(), [
-            'amount' => 44.05
+            'amount' => 44.05,
         ]);
 
         $this->user->debtors()->save($this->createUser(), [
-            'amount' => 44.06
+            'amount' => 44.06,
         ]);
 
         $this->assertCount(2, $this->viewModel->getDebts());
@@ -65,11 +65,11 @@ class BalanceViewModelTest extends TestCase
     public function testCreditors(): void
     {
         $this->user->creditors()->save($this->createUser(), [
-            'amount' => 44.05
+            'amount' => 44.05,
         ]);
 
         $this->user->creditors()->save($this->createUser(), [
-            'amount' => 44.06
+            'amount' => 44.06,
         ]);
 
         $this->assertCount(2, $this->viewModel->getCredits());

@@ -31,7 +31,7 @@ class BalanceControllerTest extends TestCase
 
         foreach ($users as $user) {
             $this->user->debtors()->save($user, [
-                'amount' => 1
+                'amount' => 1,
             ]);
         }
 
@@ -48,7 +48,7 @@ class BalanceControllerTest extends TestCase
 
         foreach ($users as $user) {
             $this->user->creditors()->save($user, [
-                'amount' => 1
+                'amount' => 1,
             ]);
         }
 

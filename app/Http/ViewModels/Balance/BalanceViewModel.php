@@ -4,8 +4,8 @@ namespace App\Http\ViewModels\Balance;
 
 use App\Models\User;
 use App\Services\Price\PriceFormatter;
-use Illuminate\Support\Collection;
 use Illuminate\Contracts\Auth\Authenticatable as UserContract;
+use Illuminate\Support\Collection;
 
 class BalanceViewModel
 {
