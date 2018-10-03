@@ -1,5 +1,5 @@
 <li class="nav-item">
-    <a href="#" class="
+    <a href="{{ route('balance.index') }}" class="
         nav-link font-initial
         @if ($balance !== 0.0)
             font-weight-bold

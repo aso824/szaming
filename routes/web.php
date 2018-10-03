@@ -19,4 +19,6 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('profile', 'ProfileController')->only([
         'index', 'update',
     ]);
+
+    Route::get('balance-details', 'BalanceController@index')->name('balance.index');
 });
