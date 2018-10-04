@@ -24,12 +24,12 @@ class CreateOrderRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'shop' => 'required',
-            'orders' => 'required|array|min:1|max:50',
-            'orders.*.name' => 'required|max:50',
-            'orders.*.price' => 'required|numeric|min:0',
+            'shop'              => 'required',
+            'orders'            => 'required|array|min:1|max:50',
+            'orders.*.name'     => 'required|max:50',
+            'orders.*.price'    => 'required|numeric|min:0',
             'orders.*.quantity' => 'required|numeric|min:1',
-            'orders.*.people' => 'required|array|min:1|max:20',
+            'orders.*.people'   => 'required|array|min:1|max:20',
             'orders.*.people.*' => 'integer|exists:users,id',
         ];
     }

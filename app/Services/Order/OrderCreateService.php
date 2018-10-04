@@ -27,7 +27,7 @@ class OrderCreateService
     {
         $this->request = $request;
 
-        if (! is_numeric($this->request->shop_id)) {
+        if (!is_numeric($this->request->shop_id)) {
             $this->request->merge(['shop' => $this->createShop()->id]);
         }
 
@@ -43,8 +43,8 @@ class OrderCreateService
     protected function createOrderModel(): Order
     {
         return Order::create([
-            'user_id' => $this->request->user_id,
-            'shop_id' => $this->request->shop,
+            'user_id'      => $this->request->user_id,
+            'shop_id'      => $this->request->shop,
             'purchased_at' => Carbon::now(),
         ]);
     }
